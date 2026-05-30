@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mizaj Coffee - Track Your Order</title>
+    <link rel="stylesheet" href="tracking.css">
+</head>
+<body>
+
+    <div class="tracking-container">
+        <h2>☕ Track Your Order</h2>
+        <p class="subtitle">Live status of your recent coffee shop order</p>
+
+        <!-- صندوق عرض رقم الطلب والحالة الحية -->
+        <div class="status-box">
+            <div class="order-number">Order ID: <span id="display-order-id">#--</span></div>
+            
+            <!-- هنا ستظهر حالة الطلب ديناميكياً (Pending, In preparation, Ready) -->
+            <div id="order-status" class="status-badge status-pending">Fetching Status...</div>
+        </div>
+
+        <!-- الخط الزمني المرئي لحالة الطلب -->
+        <div class="timeline">
+            <div class="timeline-step" id="step-pending">
+                <div class="circle">1</div>
+                <p>Pending</p>
+            </div>
+            <div class="timeline-step" id="step-prep">
+                <div class="circle">2</div>
+                <p>In Preparation</p>
+            </div>
+            <div class="timeline-step" id="step-ready">
+                <div class="circle">3</div>
+                <p>Ready</p>
+            </div>
+        </div>
+
+        <div class="tracking-footer">
+            <button onclick="checkLiveStatus()" class="btn-refresh">🔄 Refresh Status</button>
+            <br><br>
+            <a href="hot-drinks.html" class="back-link">‹ Return to Menu</a>
+        </div>
+    </div>
+
+    <script>
+        // بمجرد تحميل الصفحة، نقرأ رقم الطلب المخزن ونبحث عن حالته
+        document.addEventListener('DOMContentLoaded', () => {
+            // جلب رقم الطلب الذي سنقوم بحفظه في الـ localStorage عند نجاح الـ Checkout
+            const orderId = localStorage.getItem('last_order_id');
+            
+            if (!orderId) {
+                document.getElementById('display-order-id').innerText = "No recent order found";
+                document.getElementById('order-status').innerText = "Empty";
+                document.getElementById('order-status').className = "status-badge";
+                return;
+            }
+
+            document.getElementById('display-order-id').innerText = "#" + orderId;
+            checkLiveStatus(orderId);
+        });
+
+        // دالة الاتصال بالـ PHP بشكل حي (AJAX/Fetch) لطلب الحالة من قاعدة البيانات
+        function checkLiveStatus(orderId) {
+            if (!orderId) orderId = localStorage.getItem('last_order_id');
+            if (!orderId) return;
+
+            fetch(`./get_order_status.php?order_id=${orderId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const status = data.status; // القيمة القادمة من الداتابيز
+                        const statusBadge = document.getElementById('order-status');
+                        statusBadge.innerText = status;
+
+                        // إعادة تعيين ألوان الحالة والخط الزمني بناءً على القيمة الحالية
+                        resetTimeline();
+                        if (status === 'Pending') {
+                            statusBadge.className = "status-badge status-pending";
+                            document.getElementById('step-pending').classList.add('active');
+                        } else if (status === 'In preparation') {
+                            statusBadge.className = "status-badge status-prep";
+                            document.getElementById('step-pending').classList.add('active');
+                            document.getElementById('step-prep').classList.add('active');
+                        } else if (status === 'Ready') {
+                            statusBadge.className = "status-badge status-ready";
+                            document.getElementById('step-pending').classList.add('active');
+                            document.getElementById('step-prep').classList.add('active');
+                            document.getElementById('step-ready').classList.add('active');
+                        }
+                    } else {
+                        document.getElementById('order-status').innerText = "Order not found";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching status:', error);
+                });
+        }
+
+        function resetTimeline() {
+            document.getElementById('step-pending').classList.remove('active');
+            document.getElementById('step-prep').classList.remove('active');
+            document.getElementById('step-ready').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

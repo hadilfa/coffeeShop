@@ -1,0 +1,164 @@
+:root {
+    --bg-dark-olive: #2b3026;       
+    --accent-gold-muted: #af8d55;   
+    --card-wood-bg: #443728;        
+    --text-white: #ffffff;
+    --text-beige: #e3dec3;          
+    --border-soft: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark-olive);
+    color: var(--text-white);
+    padding: 80px 8%;
+}
+
+.tracking-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--card-wood-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid var(--border-soft);
+    text-align: center;
+}
+
+.tracking-container h2 {
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--text-beige);
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 35px;
+}
+
+/* صندوق الحالة الدائري الكبير */
+.status-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-soft);
+}
+
+.order-number {
+    font-size: 16px;
+    color: var(--text-beige);
+    margin-bottom: 10px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+/* الألوان الخاصة بكل حالة من حالات قاعدة البيانات */
+.status-pending { background-color: #e67e22; color: white; }       /* برتقالي للانتظار */
+.status-prep { background-color: #2980b9; color: white; }          /* أزرق للتحضير */
+.status-ready { background-color: #27ae60; color: white; }         /* أخضر للجاهزية */
+
+/* تصميم الخط الزمني التفاعلي والأنيق */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 40px 0;
+    padding: 0 10px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    background-color: rgba(255,255,255,0.1);
+    z-index: 1;
+}
+
+.timeline-step {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    text-align: center;
+}
+
+.timeline-step .circle {
+    width: 40px;
+    height: 40px;
+    background-color: #5d4d3b;
+    color: var(--text-beige);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px auto;
+    font-weight: bold;
+    border: 2px solid var(--border-soft);
+    transition: all 0.3s;
+}
+
+.timeline-step p {
+    font-size: 13px;
+    color: #bfae99;
+    transition: all 0.3s;
+}
+
+/* الحالات النشطة المضاءة بالذهب عند تقدم الطلب */
+.timeline-step.active .circle {
+    background-color: var(--accent-gold-muted);
+    color: #1e1d18;
+    box-shadow: 0 0 15px var(--accent-gold-muted);
+    border-color: #ffd699;
+}
+
+.timeline-step.active p {
+    color: white;
+    font-weight: bold;
+}
+
+/* أزرار الأسفل */
+.btn-refresh {
+    background-color: transparent;
+    border: 1px solid var(--accent-gold-muted);
+    color: var(--accent-gold-muted);
+    padding: 10px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-refresh:hover {
+    background-color: var(--accent-gold-muted);
+    color: black;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--text-beige);
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.back-link:hover { opacity: 1; }

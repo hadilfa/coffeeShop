@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mizaj Coffee - Hot Drinks Menu</title>
+    <!-- ربط ملف الـ CSS الخاص بالصفحة -->
+    <link rel="stylesheet" href="hot-drinks.css">
+</head>
+<body>
+
+    
+    <header class="menu-header">
+        <nav class="navbar">
+            <div class="brand-name">Mizaj</div>
+            <ul class="nav-links">
+                <li><a href="menucategories.html">Menu</a></li>
+                
+            </ul>
+            <div class="right-nav">
+                
+                
+                <!-- 🛒 أيقونة السلة التفاعلية المتطابقة مع image_4.png -->
+                <div class="cart-icon-wrapper" onclick="navigateToCart()">
+                    <span class="cart-emoji">🛒</span>
+                    <span id="cart-count" class="cart-count">0</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="header-title">
+            <h1>Charged with energy.<br>Inspired by Mizaj.</h1>
+            <p class="section-tag">Hot Drinks Category</p>
+        </div>
+    </header>
+
+   
+    <main class="menu-container">
+        <div class="menu-tabs">
+            <span class="tab active">Today Hot Drinks</span>
+           
+        </div>
+
+        <div class="products-grid">
+            
+            <!-- المنتج 1: Cappuccino -->
+            <div class="product-card">
+                <div class="image-holder">
+                    <img src="images/cappuccino.JPG" alt="Cappuccino">
+                </div>
+                <div class="product-info">
+                    <h3>Cappuccino</h3>
+                    <p class="product-desc">Creamy and smooth masterfully crafted espresso blend.</p>
+                    <div class="card-footer">
+                        <span class="price">450 DA</span>
+                        <button class="add-to-cart-btn" onclick="addToCart(1, 'Cappuccino', 450)">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card">
+                <div class="image-holder">
+                    <img src="images/caramelmacchiato.JPG" alt="Caramel Macchiato">
+                </div>
+                <div class="product-info">
+                    <h3>Caramel Macchiato</h3>
+                    <p class="product-desc">Sweet and indulgent espresso layered with rich caramel.</p>
+                    <div class="card-footer">
+                        <span class="price">520 DA</span>
+                        <button class="add-to-cart-btn" onclick="addToCart(2, 'Caramel Macchiato', 520)">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="product-card">
+                <div class="image-holder">
+                    <img src="images/espresso.JPG" alt="Espresso">
+                </div>
+                <div class="product-info">
+                    <h3>Espresso</h3>
+                    <p class="product-desc">Rich and intense pure single shot coffee profile.</p>
+                    <div class="card-footer">
+                        <span class="price">250 DA</span>
+                        <button class="add-to-cart-btn" onclick="addToCart(3, 'Espresso', 250)">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

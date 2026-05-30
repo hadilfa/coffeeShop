@@ -1,0 +1,61 @@
+:root {
+    --olive-deep: #2d312a;
+    --beige-warm: #e3dec3;
+    --gold-accent: #b89a6c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--olive-deep);
+    color: var(--beige-warm);
+    font-family: 'Georgia', serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* تنسيق قسم الـ Hero ليطابق فخامة الـ Lobby */
+.hero {
+    text-align: center;
+    padding: 60px;
+    border: 1px solid var(--gold-accent);
+    background: linear-gradient(135deg, rgba(45, 49, 42, 0.95), rgba(0,0,0,0.6));
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--gold-accent);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    font-style: italic;
+    color: var(--beige-warm);
+}
+
+/* الزر بنفس نمط التصميم السابق */
+button {
+    background: transparent;
+    border: 1px solid var(--gold-accent);
+    color: var(--gold-accent);
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: var(--gold-accent);
+    color: var(--olive-deep);
+}

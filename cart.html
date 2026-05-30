@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ararat Coffee - Your Cart</title>
+    <!-- ربط ملف الـ CSS الخاص بالسلة -->
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+    <div class="cart-container">
+        <h2>🛒 Your Shopping Cart</h2>
+        
+        <!-- جدول عرض المشروبات المشتراة -->
+        <div id="cart-table-wrapper">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-rows">
+                    <!-- الجافاسكريبت سيقوم بتوليد الأسطر هنا ديناميكياً -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- رسالة تنبيه تظهر فقط إذا كانت السلة فارغة تماماً -->
+        <div id="empty-cart-msg" class="empty-msg" style="display: none;">
+            Your cart is currently empty. <br><br>
+            <a href="hot-drinks.html" class="go-back-btn">‹ Back To Menu</a>
+        </div>
+
+        <!-- إجمالي الحساب وأزرار التحكم -->
+        <div class="cart-summary" id="cart-summary-box">
+            <div class="total-box">
+                <span>Total Amount:</span>
+                <span id="final-total">0 DA</span>
+            </div>
+            
+            <div class="cart-buttons">
+                <a href="hot-drinks.html" class="btn-secondary">‹ Continue Shopping</a>
+                <button onclick="goToCheckout()" class="btn-primary">Proceed to Checkout ›</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ربط ملف الجافاسكريبت الخاص بالسلة -->
+    <script src="cart.js"></script>
+</body>
+</html>
